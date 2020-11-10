@@ -50,9 +50,9 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
-- belongs_to :address
+- belongs_to :user
+- belongs_to :item
+- has_one :address
 
 ## images テーブル
 
