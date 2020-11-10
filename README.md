@@ -54,17 +54,6 @@
 - belongs_to :item
 - has_one :address
 
-## images テーブル
-
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| item_id | references | null: false, foreign_key: true |
-| image   | string     | null: false                    |
-
-### Association
-
-- belongs_to :items
-
 ## address テーブル
 
 | Column        | Type       | Options                        |
