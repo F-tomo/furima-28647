@@ -32,8 +32,8 @@
 
 ### Association
 
-- belongs_to :users
-- has_one :purchases
+- belongs_to :user
+- has_one :purchase
 - has_many :images
 - belongs_to :category
 - belongs_to :condition
