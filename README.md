@@ -58,7 +58,7 @@
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| prefecture_id | references | null: false, foreign_key: true |
+| prefecture_id | integer    | null: false                    |
 | post_code     | string     | null: false                    |
 | city          | string     | null: false                    |
 | address_line  | string     | null: false                    |
