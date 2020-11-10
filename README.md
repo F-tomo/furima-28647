@@ -68,8 +68,8 @@
 
 ### Association
 
-- belongs_to :purchases
-- has_many :prefecture
+- belongs_to :purchase
+- belongs_to_active_hash
 
 ## category(ActiveHash) テーブル
 
