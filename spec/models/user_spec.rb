@@ -65,6 +65,13 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password is invalid")
       end
 
+      it "passwordが全角では登録できない" do
+        @user.password = "ａ１１１１１"
+        @user.password_confirmation = "ａ１１１１１"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+
       it "passwordとpassword_confirmationが不一致では登録できないこと" do
         @user.password = "a12345"
         @user.password_confirmation = "b12345"
@@ -118,6 +125,12 @@ RSpec.describe User, type: :model do
         @user.first_name_kana = "ﾃｽﾄ"
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana is invalid")
+      end
+
+      it "birth_dateが空だと登録できない" do
+        @user.birth_date = nil
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Birth date can't be blank")
       end
     end
   end
