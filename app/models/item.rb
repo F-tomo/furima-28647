@@ -1,11 +1,13 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
   belongs_to :user
   has_one_attached :image
 
   with_options presence: true do
     validates :name
     validates :discription
-    validates :cotegory_id
+    validates :category_id, numericality: { other_than: 1 }
     validates :condition_id
     validates :postage_id
     validates :prefecture_id
