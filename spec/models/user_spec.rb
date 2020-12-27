@@ -1,18 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe 'ユーザー新規登録' do
-    before do
-      @user = FactoryBot.build(:user)
-    end
+  before do
+    @user = FactoryBot.build(:user)
+  end
 
-    context '登録がうまくいく時' do
+  describe '新規ユーザー登録' do
+    context '新規ユーザー登録ができる場合' do
       it "全てが入力されていれば登録できる" do
         expect(@user).to be_valid
       end
     end
 
-    context '登録がうまくいかない時' do
+    context '新規ユーザー登録ができない場合' do
       it "nicknameが空だと登録できない" do
         @user.nickname = nil
         @user.valid?
