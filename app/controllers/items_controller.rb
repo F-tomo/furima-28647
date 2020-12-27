@@ -4,14 +4,11 @@ class ItemsController < ApplicationController
     
   end
 
-  def new
-    if user_signed_in?
-      @item = Item.new
-    else
-      authenticate_user!
-    end
-    
-  end
+  before_action :authenticate_user!, only: [:new, :create]
+
+def new
+ @item = Item.new
+end
 
   def create
     @item = Item.new(item_params)
