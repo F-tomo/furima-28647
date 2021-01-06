@@ -42,17 +42,6 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
-  
-  def show
-  end
-
-  def destroy
-    # item = Item.find(params[:id])
-    # item.destroy
-  end
-
-  def edit
-  end
 
   private
 
