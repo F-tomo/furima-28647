@@ -25,14 +25,14 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if user_confirmation
+    if current_user.id == @item.user.id
       @item.destroy
       redirect_to root_path
     end
   end
 
   def edit
-    unless user_confirmation
+    unless current_user.id == @item.user.id
       redirect_to action: :index
     end
   end
@@ -57,7 +57,4 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def user_confirmation
-    confirmation = current_user.id == @item.user.id
-  end
 end
