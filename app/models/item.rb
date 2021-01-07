@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :hold_date
   belongs_to :user
   has_one_attached :image
+  has_many :orders
 
   with_options presence: true do
     validates :name
