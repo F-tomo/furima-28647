@@ -62,7 +62,7 @@
 | prefecture_id | integer    | null: false                    |
 | post_code     | string     | null: false                    |
 | city          | string     | null: false                    |
-| address_line  | string     | null: false                    |
+| house_number  | string     | null: false                    |
 | building      | string     |                                |
 | phone         | string     | null: false                    |
 | purchases     | references | null: false, foreign_key: true |
