@@ -18,3 +18,4 @@ require("channels")
 
 require("../new")
 require("../edit")
+require("../card")
