@@ -11,7 +11,5 @@ FactoryBot.define do
     house_number  { "1-1" }
     building      { "aiueo101" }
     phone         { Faker::Number.leading_zero_number(digits: 11) }
-    # item_id       { item.id }
-    # user_id       { item.user }
   end
 end

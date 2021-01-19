@@ -7,7 +7,7 @@ RSpec.describe ItemOrder, type: :model do
       item = FactoryBot.create(:item)
       @item_order = FactoryBot.build(:item_order, user_id: buyer.id, item_id: item.id)
     end
-          # seller = FactoryBot.create(:user)
+    
     it 'すべての値が正しく入力されていれば保存できること' do
       expect(@item_order).to be_valid
     end
@@ -62,6 +62,12 @@ RSpec.describe ItemOrder, type: :model do
 
     it '電話番号が全角だと保存できない' do
       @item_order.phone = "０００００００００００"
+      @item_order.valid?
+      expect(@item_order.errors.full_messages).to include("Phone is invalid")
+    end
+
+    it '電話番号に【-】があると保存できない' do
+      @item_order.phone = "00-000-0000"
       @item_order.valid?
       expect(@item_order.errors.full_messages).to include("Phone is invalid")
     end
