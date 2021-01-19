@@ -65,6 +65,12 @@ RSpec.describe ItemOrder, type: :model do
       expect(@item_order.errors.full_messages).to include('Phone is invalid')
     end
 
+    it '電話番号が１２桁だと保存できない' do
+      @item_order.phone = '000000000000'
+      @item_order.valid?
+      expect(@item_order.errors.full_messages).to include('Phone is invalid')
+    end
+
     it '電話番号に【-】があると保存できない' do
       @item_order.phone = '00-000-0000'
       @item_order.valid?
