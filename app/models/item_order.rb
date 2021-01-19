@@ -10,7 +10,7 @@ class ItemOrder
     validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
     validates :city, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
     validates :house_number
-    validates :phone, format: { with: /\A[0-9]+\z/ }
+    validates :phone, format: { with: /\A\d{10,11}\z/ }
     validates :user_id
     validates :item_id
     validates :token
