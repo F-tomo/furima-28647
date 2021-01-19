@@ -7,7 +7,7 @@ RSpec.describe ItemOrder, type: :model do
       item = FactoryBot.create(:item)
       @item_order = FactoryBot.build(:item_order, user_id: buyer.id, item_id: item.id)
     end
-    
+
     it 'すべての値が正しく入力されていれば保存できること' do
       expect(@item_order).to be_valid
     end
@@ -16,7 +16,7 @@ RSpec.describe ItemOrder, type: :model do
       @item_order.building = nil
       expect(@item_order).to be_valid
     end
-    
+
     it '郵便番号が空だと保存できない' do
       @item_order.post_code = nil
       @item_order.valid?
@@ -24,15 +24,15 @@ RSpec.describe ItemOrder, type: :model do
     end
 
     it '郵便番号に【-】がないと保存できない' do
-      @item_order.post_code = "1234567"
+      @item_order.post_code = '1234567'
       @item_order.valid?
-      expect(@item_order.errors.full_messages).to include("Post code is invalid")
+      expect(@item_order.errors.full_messages).to include('Post code is invalid')
     end
 
     it '都道府県を選択していないと登録できない' do
       @item_order.prefecture_id = 1
       @item_order.valid?
-      expect(@item_order.errors.full_messages).to include("Prefecture must be other than 1")
+      expect(@item_order.errors.full_messages).to include('Prefecture must be other than 1')
     end
 
     it '市区町村が空だと保存できない' do
@@ -42,9 +42,9 @@ RSpec.describe ItemOrder, type: :model do
     end
 
     it '市区町村が半角だと保存できない' do
-      @item_order.city = "ﾃｽﾄ"
+      @item_order.city = 'ﾃｽﾄ'
       @item_order.valid?
-      expect(@item_order.errors.full_messages).to include("City is invalid")
+      expect(@item_order.errors.full_messages).to include('City is invalid')
     end
 
     it '番地が空だと保存できない' do
@@ -53,7 +53,6 @@ RSpec.describe ItemOrder, type: :model do
       expect(@item_order.errors.full_messages).to include("House number can't be blank")
     end
 
-
     it '電話番号が空だと保存できない' do
       @item_order.phone = nil
       @item_order.valid?
@@ -61,15 +60,15 @@ RSpec.describe ItemOrder, type: :model do
     end
 
     it '電話番号が全角だと保存できない' do
-      @item_order.phone = "０００００００００００"
+      @item_order.phone = '０００００００００００'
       @item_order.valid?
-      expect(@item_order.errors.full_messages).to include("Phone is invalid")
+      expect(@item_order.errors.full_messages).to include('Phone is invalid')
     end
 
     it '電話番号に【-】があると保存できない' do
-      @item_order.phone = "00-000-0000"
+      @item_order.phone = '00-000-0000'
       @item_order.valid?
-      expect(@item_order.errors.full_messages).to include("Phone is invalid")
+      expect(@item_order.errors.full_messages).to include('Phone is invalid')
     end
 
     it '購入者idが空だと保存できない' do

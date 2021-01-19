@@ -9,5 +9,4 @@ class Order < ApplicationRecord
     validates :user_id
     validates :item_id
   end
-
 end
