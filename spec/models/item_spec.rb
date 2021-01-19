@@ -10,8 +10,9 @@ RSpec.describe Item, type: :model do
       it '全てが入力されていれば保存できる' do
         expect(@item).to be_valid
       end
-
-      context '商品の保存ができない場合'
+    end
+    
+    context '商品の保存ができない場合'
       it '画像が空だと登録できない' do
         @item.image = nil
         @item.valid?
