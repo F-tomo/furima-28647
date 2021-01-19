@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
-
-  before_action :set_item, only: [:index, :create]
-  before_action :move_to_root, only: [:index, :create]
+  before_action :set_item, only: %i[index create]
+  before_action :move_to_root, only: %i[index create]
+  before_action :move_to_index, only: %i[index create]
 
   def index
     @item_order = ItemOrder.new
@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
     if @item_order.valid?
       pay_item
       @item_order.save
-      return redirect_to root_path
+      redirect_to root_path
     else
       render 'index'
     end
@@ -23,13 +23,13 @@ class OrdersController < ApplicationController
   def order_params
     params.permit(
       :post_code, :prefecture_id, :city, :house_number, :building, :phone, :item_id, :token
-      ).merge(
+    ).merge(
       user_id: current_user.id
-      )
+    )
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_29573ea5ca44d57d6caabdb8"
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: order_params[:token],
@@ -42,9 +42,10 @@ class OrdersController < ApplicationController
   end
 
   def move_to_root
-    if @item.order != nil
-      redirect_to root_path
-    end
+    redirect_to root_path unless @item.order.nil?
   end
 
+  def move_to_index
+    redirect_to root_path if current_user.id == @item.user.id
+  end
 end
