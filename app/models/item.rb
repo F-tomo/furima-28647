@@ -7,11 +7,12 @@ class Item < ApplicationRecord
   belongs_to :hold_date
   belongs_to :user
   has_one_attached :image
+  has_one :order
 
   with_options presence: true do
     validates :name
     validates :discription
-    validates :price, inclusion: {in: 300..9999999 }, format: { with: /\A[0-9]+\z/ }
+    validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
     validates :image
   end
 

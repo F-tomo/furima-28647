@@ -5,10 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
+  has_many :orders
 
   with_options presence: true do
     validates :nickname
-    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i }
+    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
     validates :birth_date
   end
 
@@ -21,5 +22,4 @@ class User < ApplicationRecord
     validates :last_name_kana
     validates :first_name_kana
   end
-  
 end
